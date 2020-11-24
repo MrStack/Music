@@ -1,6 +1,0 @@
-function [X,f] = fastFourierTrans(x,fs)
-N = length(x);%采样点数
-X = fft(x)/N;%
-X = X(1:N/2+1);
-X(2:end-1) = X(2:end-1)*2;
-f = (0:N/2)*fs/N;
