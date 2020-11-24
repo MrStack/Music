@@ -22,7 +22,7 @@ title(h3,'Mel Spectrum');
 
 h4 = subplot(2,2,3);
 stem(h4,0);
-axis(h4,[0,5000,-2*pi,2*pi]);
+axis(h4,[0,5000,-pi,pi]);
 xlabel(h4,'Frequency (Hz)');
 ylabel(h4,'Phrase (Rad)');
 title(h4,'Phrase Spectrum');
