@@ -8,14 +8,14 @@ title(h1,'Time domain');
 
 h2 = subplot(2,2,2);
 stem(h2,0);
-axis(h2,[0,5000,0,1]);
+axis(h2,[0,5000,0,0.5]);
 xlabel(h2,'Frequency (Hz)');
 ylabel(h2,'Magnitude');
 title(h2,'Spectrum');
 
 h3 = subplot(2,2,4);
 stem(h3,0);
-axis(h3,[0,3923,0,1]);
+axis(h3,[0,3923,0,0.5]);
 xlabel(h3,'Frequency (Mel)');
 ylabel(h3,'Magnitude');
 title(h3,'Mel Spectrum');

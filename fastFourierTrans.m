@@ -8,5 +8,5 @@ function [X,f] = fastFourierTrans(x,fs)
 N = length(x);%采样点数
 X = fft(x)/N;%FFT变换并除以采样点个数获得正确的变换后的值
 X = X(1:N/2+1);%取前N/2+1个点为有效值
-X(2:end-1) = X(2:end-1)*2;%除开0Hz和N/2这两个特殊点，其余值还需要乘以2
+X(2:end) = X(2:end)*2;%除开0Hz这个特殊点，其余值还需要乘以2
 f = (0:N/2)*fs/N;%计算0~N/2这么多点的各点实际频率

@@ -8,7 +8,7 @@ function [X,f] = fastFourierTransWhole(x,fs)
 N = length(x);%采样点数
 X = fft(x)/N;%FFT变换并除以采样点个数获得正确的变换后的值
 
-%除开0Hz和N/2这两个特殊点，其余值还需要乘以2
+%除开0Hz这个特殊点，其余值还需要乘以2
 X = X*2;
 X(1) = X(1)/2;
 
