@@ -1,15 +1,15 @@
-function X = myfft(x)
+function X = myfftbk(x)
 x = reshape(x,[],1);
 N = length(x);
-indices = uint32(1:N);
+indices = 1:N;
 rindices = bitrevorder(indices);
 
 levelSum = x(rindices);
 level = log(N)/log(2);
 
 W = W_N(0:N-1,N);
-for i = 1:level      
-    pool = repmat(levelSum,1,2);
+for i = 1:level
+    pool = [levelSum,levelSum];    
     coef = W(1:2^(level-i):N);
     coef = reshape(coef,[],2);
     
@@ -24,13 +24,13 @@ for i = 1:level
     
     pool(index,:) = pool(index,:).*repmat(coef,2^(level-i),1);
     
-    lgcidx = zeros(size(pool,1),1);
+    lgcidx = false(size(pool,1),1);
     lgcidx(index) = 1;
     sftidxup = lgcidx;
-    sftidxdn = circshift(sftidxup,-2^(i-1));
+    sftidxdn = ~sftidxup;
     
-    pool(:,1) = circshift(pool(:,1).*sftidxup,-2^(i-1))+pool(:,1).*sftidxdn;
-    pool(:,2) = circshift(pool(:,2).*sftidxdn,2^(i-1))+pool(:,2).*sftidxup;
+    pool(:,1) = circshift(pool(:,1).*sftidxup,-2^(i-1))+pool(:,1).*(~sftidxup);
+    pool(:,2) = circshift(pool(:,2).*sftidxdn,2^(i-1))+pool(:,2).*(~sftidxdn);
     
     levelSum = sum(pool,2);        %移位乘法求和
 end
